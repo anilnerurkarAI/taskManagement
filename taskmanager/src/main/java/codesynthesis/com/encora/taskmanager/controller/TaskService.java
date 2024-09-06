@@ -1,7 +1,9 @@
-package codesynthesis.encora.com.taskmanager;
+package codesynthesis.com.encora.taskmanager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import codesynthesis.com.encora.taskmanager.dto.Task;
 
 import java.util.List;
 

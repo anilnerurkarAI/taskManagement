@@ -1,4 +1,4 @@
-package codesynthesis.encora.com.taskmanager;
+package codesynthesis.com.encora.taskmanager.dto;
 
 import java.util.Date;
 import org.springframework.data.annotation.Id;

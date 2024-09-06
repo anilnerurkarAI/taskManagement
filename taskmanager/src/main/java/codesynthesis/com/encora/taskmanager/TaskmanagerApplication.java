@@ -1,4 +1,4 @@
-package codesynthesis.encora.com.taskmanager;
+package codesynthesis.com.encora.taskmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +22,8 @@ public class TaskmanagerApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**") // Allow requests to your API endpoints
                         .allowedOrigins("http://localhost:3000") // Allow your React dev server
-                        .allowedMethods("GET", "POST", "PUT", "DELETE"); // Allow necessary HTTP methods
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*"); ; // Allow necessary HTTP methods
             }
         };
     }

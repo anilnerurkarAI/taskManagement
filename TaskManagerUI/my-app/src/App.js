@@ -14,9 +14,56 @@ function App() {
   const [selectedEndDate, setSelectedEndDate] = useState(new Date()); // State for selected end date
   const [editingTask, setEditingTask] = useState(null);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState(null);
+
   useEffect(() => {
-    console.log("Fetching tasks from:", "http://localhost:8080/api/tasks"); // Log before fetching
-    fetch("http://localhost:8080/api/tasks")
+    // Check for existing authentication (e.g., JWT token in local storage)
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = () => {
+    // Send authentication request to your backend
+    
+    fetch("http://localhost:8080/api/login", { // Replace with your login endpoint
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Invalid username or password");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Store the token in local storage
+        localStorage.setItem("token", data.token);
+        setIsLoggedIn(true);
+        setAuthError(null); // Clear any previous errors
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        setAuthError("Invalid username or password");
+      });
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  }; 
+
+
+  useEffect(() => {
+    console.log("Fetching tasks from:", "http://localhost:8080/"); // Log before fetching
+    fetch("http://localhost:8080/")
       .then((response) => {
         console.log("Response:", response); // Log the entire response object
         return response.json();
@@ -102,7 +149,7 @@ function App() {
   }; 
   
   return (
-    <div
+    <><div
       className="App"
       style={{
         backgroundImage: "url(task-manager-background.jpg)",
@@ -133,7 +180,7 @@ function App() {
           </li>
         </ul>
       </nav>
-
+  {isLoggedIn && ( // Show task form and other UI only if logged in
       <div className="container mt-4">
         {activeView === "form" && (
           <div className="row">
@@ -144,7 +191,7 @@ function App() {
                   type="text"
                   className="form-control"
                   id="taskName" />
-              
+
               </div>
               <div className="form-group">
                 <label htmlFor="description">Description:</label>
@@ -158,8 +205,7 @@ function App() {
                   className="form-control"
                   id="selectedDueDate"
                   value={selectedDueDate.toISOString().slice(0, 10)} // Format date for input field
-                  onChange={(e) => setSelectedDueDate(new Date(e.target.value))}
-                />
+                  onChange={(e) => setSelectedDueDate(new Date(e.target.value))} />
               </div>
 
               <button
@@ -189,7 +235,7 @@ function App() {
           </div>
         )}
 
-{activeView === "list" && (
+        {activeView === "list" && (
           <div>
             <h2>Task List</h2>
             <table className="table">
@@ -199,7 +245,7 @@ function App() {
                   <th>Description</th>
                   <th>Start Date</th>
                   <th>End Date</th>
-                  <th>complete?</th>                  
+                  <th>complete?</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -210,8 +256,8 @@ function App() {
                     <td>{task.description}</td>
                     <td>{task.dueDate}</td>
                     <td>{task.completionDate}</td>
-                    <td>{task.completed? "Yes" :  "No"}</td>
-                   <td>
+                    <td>{task.completed ? "Yes" : "No"}</td>
+                    <td>
                       <button
                         className="btn btn-warning btn-sm mr-2"
                         onClick={() => handleEditTask(task)}
@@ -232,7 +278,45 @@ function App() {
           </div>
         )}
       </div>
-    </div>
+            )}
+    </div><div className="App">
+        {/* ... (your existing JSX) */}
+
+        {!isLoggedIn ? (
+          <div>
+            <h2>Login</h2>
+            {authError && <div className="alert alert-danger">{authError}</div>}
+            <div className="form-group">
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <button className="btn btn-primary" onClick={handleLogin}>
+              Login
+            </button>
+          </div>
+        ) : (
+          <div>
+            {/* ... (your existing task management UI) */}
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        )}
+      </div></>
   );
 }
 
