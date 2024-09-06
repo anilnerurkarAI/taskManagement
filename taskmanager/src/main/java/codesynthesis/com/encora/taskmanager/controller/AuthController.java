@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import codesynthesis.com.encora.taskmanager.dto.AuthRequest;
 
-import lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor; 
 
 @RestController
 @RequestMapping("/") 

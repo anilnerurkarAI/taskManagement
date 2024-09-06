@@ -61,7 +61,7 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
             <version>0.12.6</version>
-        </dependency>
+        </dependency> 
         
         <!-- Add other dependencies you need for your task manager application -->
         <!-- For example, if you are using a database, add the database driver dependency -->
