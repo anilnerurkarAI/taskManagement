@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+/* src/components/Navbar.css or src/App.css */
+nav {
+  background-color: #222; /* Dark background */
+  padding: 10px 0; /* Add some padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right; /* Align links to the right */
+}
+
+nav li {
+  display: inline-block; /* Display items horizontally */
+  margin: 0 15px; /* Add spacing between links */
+}
+
+nav a {
+  text-decoration: none;
+  color: white; /* Light text color */
+  font-weight: bold;
+  padding: 10px 15px; /* Add padding to links */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+nav a:hover {
+  background-color: #333; /* Darker background on hover */
+}
+
+nav a.active { /* Style the active link */
+  background-color: #4CAF50; /* Example active link color */
+  color: white;
+}
+
+nav li:first-child, nav li:nth-child(2){ 
+  float: left; 
+  text-align: left; /* Align the text inside to the left */
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

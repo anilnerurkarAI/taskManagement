@@ -1,0 +1,64 @@
+# Codesys UI
+
+This is the frontend user interface for the Codesys Task Manager application. It's built using React and interacts with a backend API (presumably a Spring Boot application) to manage tasks.
+
+## Features
+
+- **Task Listing:** Displays a list of tasks fetched from the backend API.
+- **Task Creation:** Allows users to add new tasks with a title, description, status, and due date.
+- **Task Editing:** Enables users to modify existing tasks.
+- **Task Deletion:** Provides functionality to delete tasks.
+- **Authentication:** Integrates with a backend authentication system using JWT (JSON Web Tokens).
+
+## Technologies Used
+
+- **React:** JavaScript library for building user interfaces.
+- **Axios:** Promise-based HTTP client for making API requests.
+- **React Bootstrap:** UI component library based on Bootstrap.
+- **Bootstrap:** CSS framework for styling and layout.
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/codesys-ui.git
+Navigate to the project directory:
+
+cd codesys-ui
+Install dependencies:
+
+npm install
+Configuration
+Backend API URL: Ensure that the React application is configured to make API requests to the correct backend URL. You can set this in an environment variable or directly in the code (e.g., in src/task/Task.js).
+Running the Application
+Start the backend API: Make sure your backend API is running and accessible.
+
+Start the development server:
+
+npm start
+This will start the React development server, and the application will be accessible in your web browser at http://localhost:3000.
+
+Building for Production
+To create a production build of the application:
+
+npm run build
+This will create a build folder containing the optimized production-ready files.
+
+Dockerization
+You can use the provided Dockerfile to build and run the application in a Docker container. Refer to the Dockerfile for instructions on how to build and run the image.
+
+Contributing
+Contributions are welcome! Please open an issue or submit a pull request if you have any suggestions or improvements.
+
+License
+This project is licensed under the MIT License.
+
+
+**Remember to:**
+
+- Replace placeholders like `your-username` and the backend API URL with your actual values.
+- Add any additional information specific to your project, such as deployment instructions or known issues.
+
+This README file provides a good starting point for documenting your Codesys UI project.
+Rate this answer: 
+Context Sources (10 files)
