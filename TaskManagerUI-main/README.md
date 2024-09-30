@@ -17,8 +17,8 @@ This is a React frontend for a task management application. It provides a user i
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/task-manager-ui.git`
-2. Navigate to the project directory: `cd task-manager-ui`
+1. Clone the repository: `https://github.com/anilnerurkarAI/taskManagement.git`
+2. Navigate to the project directory: `cd taskmanagerui-main`
 3. Install dependencies: `npm install`
 
 ## Configuration
